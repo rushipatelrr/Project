@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
-import cart from '../../assets/images/shopping-cart.png';
+import cart from '../../assets/images/shopping-cart.gif';
 const Navbar = () => {
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);

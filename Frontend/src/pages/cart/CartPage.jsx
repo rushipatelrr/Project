@@ -1,12 +1,21 @@
 import React from 'react';
 import { useCart } from '../../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 import './CartPage.css';
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const { cartItems, updateQuantity, removeFromCart, clearCart } = useCart();
 
   const getTotal = () =>
     cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const handleCheckout = () => {
+    if (cartItems.length === 0) {
+      alert('Your cart is empty. Please add items before proceeding to checkout.');
+      return;
+    }
+    navigate('/checkout');
+  };
 
   return (
     <div className="cart-container">
@@ -38,7 +47,7 @@ const CartPage = () => {
           <div className="cart-summary">
             <h3>Total: ₹{getTotal()}</h3>
             <button className="clear-cart" onClick={clearCart}>Clear Cart</button>
-            <button className="checkout-btn">Checkout</button>
+            <button className="checkout-btn" onClick={handleCheckout}>Checkout</button>
           </div>
         </>
       )}

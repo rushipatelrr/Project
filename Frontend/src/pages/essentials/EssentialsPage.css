@@ -1,0 +1,19 @@
+.essentials-page {
+  padding: 2rem;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.essentials-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #0a6847;
+}
+
+.essentials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}

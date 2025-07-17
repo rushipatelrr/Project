@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+// src/pages/RestaurantMenu.jsx
+import React, { useState, useEffect } from 'react';
 import './RestaurantMenu.css';
 import { useCart } from '../context/CartContext';
 
-
 const RestaurantMenu = ({ restaurantName, items }) => {
   const [quantities, setQuantities] = useState({});
-  const { addToCart, updateQuantity } = useCart();
+  const { addToCart, updateQuantity, cartSource, setRestaurantName } = useCart();
 
-  const handleAddToCart = (item, index) => {
-    setQuantities((prev) => ({ ...prev, [item.id]: 1 }));
-    addToCart(item);
+  useEffect(() => {
+    setRestaurantName(restaurantName); // ✅ Save on mount
+  }, [restaurantName, setRestaurantName]);
+
+  const isDisabled = cartSource && cartSource !== 'restaurant';
+
+  const handleAddToCart = (item) => {
+    if (!isDisabled) {
+      setQuantities((prev) => ({ ...prev, [item.id]: 1 }));
+      addToCart({ ...item, source: 'restaurant' });
+    }
   };
 
   const handleIncrement = (item) => {
@@ -24,7 +32,7 @@ const RestaurantMenu = ({ restaurantName, items }) => {
       const copy = { ...quantities };
       delete copy[item.id];
       setQuantities(copy);
-      updateQuantity(item.id, 0); // this will remove item
+      updateQuantity(item.id, 0); // remove item
     } else {
       setQuantities((prev) => ({ ...prev, [item.id]: newQty }));
       updateQuantity(item.id, newQty);
@@ -46,16 +54,17 @@ const RestaurantMenu = ({ restaurantName, items }) => {
 
               {quantities[item.id] ? (
                 <div className="quantity-controller">
-                  <button onClick={() => handleDecrement(item)}>-</button>
+                  <button onClick={() => handleDecrement(item)} disabled={isDisabled}>-</button>
                   <span>{quantities[item.id]}</span>
-                  <button onClick={() => handleIncrement(item)}>+</button>
+                  <button onClick={() => handleIncrement(item)} disabled={isDisabled}>+</button>
                 </div>
               ) : (
                 <button
                   className="add-cart-btn"
                   onClick={() => handleAddToCart(item)}
+                  disabled={isDisabled}
                 >
-                  Add to Cart
+                  {isDisabled ? 'Cart Locked' : 'Add to Cart'}
                 </button>
               )}
             </div>
