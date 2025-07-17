@@ -1,0 +1,80 @@
+.food-container {
+  background-color: #f2f6fc;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.food-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.search-bar-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.search-bar {
+  width: 90%;
+  max-width: 400px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.search-bar:focus {
+  border-color: #4caf50;
+}
+
+.cuisine-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
+  scrollbar-width: none; 
+}
+
+.cuisine-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.cuisine-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.cuisine-button:hover {
+  background-color: #e0f2f1;
+}
+
+.cuisine-button.active {
+  background-color: #4caf50;
+  color: white;
+  border-color: #4caf50;
+}
+
+.restaurant-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.no-results {
+  text-align: center;
+  color: #888;
+  font-size: 1rem;
+  margin-top: 2rem;
+}

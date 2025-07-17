@@ -1,0 +1,39 @@
+.restaurant-card {
+  display: flex;
+  background-color: white;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.restaurant-card:hover {
+  transform: scale(1.02);
+}
+
+.restaurant-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.restaurant-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.restaurant-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.restaurant-info p {
+  font-size: 1rem;
+  color: #555;
+}
