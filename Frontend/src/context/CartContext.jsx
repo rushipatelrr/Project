@@ -5,24 +5,27 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [cartSource, setCartSource] = useState(null); // 'restaurant' | 'essentials'
-  const [restaurantName, setRestaurantName] = useState(null); // For restaurant orders
+  const [restaurantName, setRestaurantName] = useState(null);
+
   const addToCart = (item) => {
-    const itemSource = item.source; // 'restaurant' or 'essentials'
+    const itemSource = item.source;
 
     if (!cartSource) {
-      // First item sets source
+      // First item sets the cart source
       setCartSource(itemSource);
       setCartItems([{ ...item, quantity: 1 }]);
     } else if (cartSource === itemSource) {
-      // Same source, allow adding
+      // Same source → allow adding or incrementing
       setCartItems((prev) => {
         const exists = prev.find((i) => i.id === item.id);
         if (exists) {
           return prev.map((i) =>
-            i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+            i.id === item.id
+              ? { ...i, quantity: i.quantity + 1 } // ✅ Keep original metadata
+              : i
           );
         }
-        return [...prev, { ...item, quantity: 1 }];
+        return [...prev, { ...item, quantity: 1 }]; // ✅ Preserve metadata
       });
     } else {
       alert(

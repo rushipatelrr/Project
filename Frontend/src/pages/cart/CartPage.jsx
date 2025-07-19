@@ -9,11 +9,15 @@ const CartPage = () => {
 
   const getTotal = () =>
     cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
   const handleCheckout = () => {
     if (cartItems.length === 0) {
       alert('Your cart is empty. Please add items before proceeding to checkout.');
       return;
     }
+
+    // Optional: If you want to inspect what's being sent
+    console.log("Cart Items being sent to checkout:", cartItems);
     navigate('/checkout');
   };
 
@@ -40,6 +44,9 @@ const CartPage = () => {
                 <button className="remove-btn" onClick={() => removeFromCart(item.id)}>
                   Remove
                 </button>
+
+                {/* ✅ Hidden metadata (for debugging or validation, remove later) */}
+                {/* <pre style={{ fontSize: '10px' }}>{JSON.stringify(item.tasteProfile)}</pre> */}
               </div>
             ))}
           </div>

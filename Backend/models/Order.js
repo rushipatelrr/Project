@@ -13,9 +13,16 @@ const orderSchema = new mongoose.Schema({
       name: String,
       price: Number,
       quantity: Number,
+
+      // 🔽 Add these fields for recommendation logic
+      tasteProfile: [String],      // e.g., ['Spicy', 'Savory']
+      cuisine: String,             // e.g., 'Italian'
+      spiceLevel: String,          // e.g., 'Medium'
+      isVeg: Boolean,
+      category: String,            // e.g., 'Main Course'
     },
   ],
-  restaurantName: String, // ✅ Add this if missing
+  restaurantName: String,
   totalAmount: Number,
   createdAt: { type: Date, default: Date.now },
 });
